@@ -116,10 +116,10 @@ def main():
     print(f"  Loaded {row_count:,} rows into stg_sales_raw")
 
     print("\nStep 3: Clean & transform")
-    run_sql_file(conn, SQL_DIR / "03_clean_transform.sql")
+    run_sql_file(conn, SQL_DIR / "02_clean_transform.sql")
 
     print("\nStep 4: Create Power BI views")
-    run_sql_file(conn, SQL_DIR / "05_powerbi_views.sql")
+    run_sql_file(conn, SQL_DIR / "04_powerbi_views.sql")
 
     print_summary(conn)
     conn.close()
