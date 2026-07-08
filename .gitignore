@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.env
+.venv/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+.ipynb_checkpoints/
+
+# Data (keep structure; commit public Superstore sample for reproducibility)
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/superstore_sales.csv
+data/processed/*
+!data/processed/.gitkeep
+data/exports/*
+!data/exports/.gitkeep
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Power BI
+*.pbix
+powerbi/screenshots/*
+!powerbi/screenshots/.gitkeep
+!powerbi/screenshots/*.png
+
+# Logs
+*.log
+
+# Secrets
+.env.local
+credentials.json
+*.pem

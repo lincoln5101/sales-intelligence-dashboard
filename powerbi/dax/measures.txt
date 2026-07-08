@@ -1,0 +1,146 @@
+// =============================================================================
+// Apex Distribution — DAX Measures
+// =============================================================================
+// How to add these in Power BI Desktop:
+//   1. Modeling → New Table → name it "_Metrics" (see BUILD_GUIDE.md)
+//   2. Select _Metrics table → Modeling → New Measure
+//   3. Paste each measure below (one at a time)
+//
+// Table reference: sales_executive (main fact table from CSV import)
+// =============================================================================
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CORE KPIs (Page 1 — Executive Overview)
+// ─────────────────────────────────────────────────────────────────────────────
+
+Total Revenue =
+SUM ( sales_executive[sales_amount] )
+
+Total Profit =
+SUM ( sales_executive[profit] )
+
+Profit Margin % =
+DIVIDE ( [Total Profit], [Total Revenue], 0 )
+
+Total Orders =
+DISTINCTCOUNT ( sales_executive[order_id] )
+
+Total Customers =
+DISTINCTCOUNT ( sales_executive[customer_id] )
+
+Avg Order Value =
+DIVIDE ( [Total Revenue], [Total Orders], 0 )
+
+Total Line Items =
+COUNTROWS ( sales_executive )
+
+Loss Making Lines =
+CALCULATE (
+    COUNTROWS ( sales_executive ),
+    sales_executive[is_loss_making] = 1
+)
+
+Loss Making % =
+DIVIDE ( [Loss Making Lines], [Total Line Items], 0 )
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TIME INTELLIGENCE (requires Dim Date table — see BUILD_GUIDE Step 4)
+// ─────────────────────────────────────────────────────────────────────────────
+
+Revenue PY =
+CALCULATE (
+    [Total Revenue],
+    SAMEPERIODLASTYEAR ( 'Dim Date'[Date] )
+)
+
+Revenue YoY % =
+VAR CurrentRev = [Total Revenue]
+VAR PriorRev   = [Revenue PY]
+RETURN
+    DIVIDE ( CurrentRev - PriorRev, PriorRev, BLANK () )
+
+Profit PY =
+CALCULATE (
+    [Total Profit],
+    SAMEPERIODLASTYEAR ( 'Dim Date'[Date] )
+)
+
+Profit YoY % =
+VAR CurrentProfit = [Total Profit]
+VAR PriorProfit   = [Profit PY]
+RETURN
+    DIVIDE ( CurrentProfit - PriorProfit, PriorProfit, BLANK () )
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PRODUCT & PROFITABILITY (Page 2)
+// ─────────────────────────────────────────────────────────────────────────────
+
+Category Revenue =
+[Total Revenue]    // use as tooltip / context measure on category visuals
+
+Category Profit =
+[Total Profit]
+
+Category Margin % =
+DIVIDE ( [Total Profit], [Total Revenue], 0 )
+
+Avg Discount % =
+AVERAGE ( sales_executive[discount] )
+
+Revenue at Heavy Discount =
+CALCULATE (
+    [Total Revenue],
+    sales_executive[discount_band] = "21%+"
+)
+
+Margin at Heavy Discount =
+CALCULATE (
+    [Profit Margin %],
+    sales_executive[discount_band] = "21%+"
+)
+
+Furniture Revenue =
+CALCULATE (
+    [Total Revenue],
+    sales_executive[category] = "Furniture"
+)
+
+Furniture Margin % =
+CALCULATE (
+    [Profit Margin %],
+    sales_executive[category] = "Furniture"
+)
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CUSTOMER ANALYSIS (Page 3)
+// ─────────────────────────────────────────────────────────────────────────────
+
+Revenue per Customer =
+DIVIDE ( [Total Revenue], [Total Customers], 0 )
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FORMATTING HELPERS (optional — use in conditional formatting)
+// ─────────────────────────────────────────────────────────────────────────────
+
+Margin Status =
+SWITCH (
+    TRUE (),
+    [Profit Margin %] >= 0.15, "Strong",
+    [Profit Margin %] >= 0.08, "Moderate",
+    [Profit Margin %] >= 0,     "Weak",
+    "Loss"
+)
+
+Margin Color =
+SWITCH (
+    [Margin Status],
+    "Strong",   "#70AD47",
+    "Moderate", "#ED7D31",
+    "Weak",     "#A5A5A5",
+    "#C00000"
+)

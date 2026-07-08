@@ -1,0 +1,13 @@
+-- =============================================================================
+-- 02_load_data.sql
+-- Sales Intelligence Dashboard — Data Loading Notes
+-- =============================================================================
+-- SQLite does not support BULK INSERT from CSV natively in all environments.
+-- Staging data is loaded by:  python/python/run_pipeline.py
+--
+-- That script reads data/raw/superstore_sales.csv, normalizes dates to ISO
+-- format, and inserts rows into stg_sales_raw.
+--
+-- Manual alternative (after running 01_create_schema.sql):
+--   python python/run_pipeline.py --load-only
+-- =============================================================================

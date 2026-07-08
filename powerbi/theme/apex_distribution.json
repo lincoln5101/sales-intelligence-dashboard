@@ -1,0 +1,77 @@
+{
+  "name": "Apex Distribution Executive",
+  "dataColors": [
+    "#4472C4",
+    "#70AD47",
+    "#ED7D31",
+    "#A5A5A5",
+    "#5B9BD5",
+    "#C00000",
+    "#264478",
+    "#9B57A0"
+  ],
+  "foreground": "#252423",
+  "foregroundNeutralSecondary": "#605E5C",
+  "foregroundNeutralTertiary": "#B3B0AD",
+  "background": "#FFFFFF",
+  "backgroundLight": "#F3F2F1",
+  "backgroundNeutral": "#EDEBE9",
+  "tableAccent": "#4472C4",
+  "good": "#70AD47",
+  "neutral": "#A5A5A5",
+  "bad": "#C00000",
+  "maximum": "#4472C4",
+  "center": "#A5A5A5",
+  "minimum": "#C00000",
+  "textClasses": {
+    "callout": {
+      "fontSize": 28,
+      "fontFace": "Segoe UI Semibold"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold"
+    },
+    "header": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI Semibold"
+    },
+    "label": {
+      "fontSize": 10,
+      "fontFace": "Segoe UI"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "border": [{ "show": false }],
+        "title": [{
+          "fontSize": 11,
+          "fontFamily": "Segoe UI Semibold",
+          "color": { "solid": { "color": "#252423" } }
+        }],
+        "padding": [{ "top": 8, "bottom": 8, "left": 8, "right": 8 }]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [{
+          "fontSize": 28,
+          "color": { "solid": { "color": "#252423" } }
+        }],
+        "categoryLabels": [{
+          "fontSize": 10,
+          "color": { "solid": { "color": "#605E5C" } }
+        }]
+      }
+    },
+    "slicer": {
+      "*": {
+        "header": [{
+          "fontSize": 10,
+          "fontFamily": "Segoe UI Semibold"
+        }]
+      }
+    }
+  }
+}
