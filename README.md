@@ -9,7 +9,7 @@
 
 ## Summary
 
-This project demonstrates a complete analytics workflow used in real corporate BI teams. Raw sales transaction data is ingested, validated, modeled in a star schema, analyzed with SQL, and delivered through an executive Power BI dashboard — answering questions about revenue, profitability, customer segments, and product performance.
+This project demonstrates a complete analytics workflow used in real corporate BI teams. Raw sales transaction data is ingested, validated, modeled in a star schema, analyzed with SQL, and delivered through an executive Power BI dashboard; answering questions about revenue, profitability, customer segments, and product performance.
 
 
 
