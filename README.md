@@ -192,6 +192,7 @@ sales-intelligence-dashboard/
 ├── powerbi/
 │   ├── screenshots/                   # Dashboard screenshots
 │   └── dashboard_notes.md             # Power BI build guide
+│   └── Sales Intelligence Dashboard.pbix # Actual PowerBI file
 │
 ├── docs/
 │   ├── business_problem.md            # Stakeholder context
