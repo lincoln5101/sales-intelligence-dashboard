@@ -2,16 +2,16 @@
 
 > End-to-end business intelligence project: raw data → SQL database → analytics → Power BI executive dashboard.
 
-**Company:** Apex Distribution Inc. (fictional framing of Superstore sample data)  
-**Status:** Complete — ETL pipeline + Power BI executive dashboard
+**Company:** Apex Distribution Inc.
+**Status:** Complete: ETL pipeline & Power BI executive dashboard
 
----
 
-## Executive Summary
+
+## Summary
 
 This project demonstrates a complete analytics workflow used in real corporate BI teams. Raw sales transaction data is ingested, validated, modeled in a star schema, analyzed with SQL, and delivered through an executive Power BI dashboard — answering questions about revenue, profitability, customer segments, and product performance.
 
----
+
 
 ## Business Problem
 
@@ -24,7 +24,7 @@ Apex Distribution's leadership lacks a unified view of sales performance across 
 
 See [docs/business_problem.md](docs/business_problem.md) for full context.
 
----
+
 
 ## Tools Used
 
@@ -37,7 +37,7 @@ See [docs/business_problem.md](docs/business_problem.md) for full context.
 | **Git / GitHub** | Version control and portfolio hosting |
 | **Markdown** | Project documentation |
 
----
+
 
 ## Dataset Source
 
@@ -52,7 +52,7 @@ See [docs/business_problem.md](docs/business_problem.md) for full context.
 
 **Why this dataset:** Contains Sales, Profit, Discount, Region, Segment, and Category fields — everything needed for executive KPIs, margin analysis, and dimensional modeling.
 
----
+
 
 ## Project Architecture
 
@@ -67,7 +67,7 @@ See [docs/business_problem.md](docs/business_problem.md) for full context.
 
 See [docs/methodology.md](docs/methodology.md) for the full pipeline description.
 
----
+
 
 ## Key Questions Answered
 
@@ -78,7 +78,7 @@ See [docs/methodology.md](docs/methodology.md) for the full pipeline description
 5. What is the impact of discounting on profitability?
 6. Who are the top customers by revenue and profit?
 
----
+
 
 ## Dashboard Preview
 
@@ -86,9 +86,9 @@ See [docs/methodology.md](docs/methodology.md) for the full pipeline description
 |------|--------------------|-------------------------|-------------------|
 | ![Home](powerbi/screenshots/00_home_navigation.png) | ![Executive Overview](powerbi/screenshots/01_executive_overview.png) | ![Product](powerbi/screenshots/02_product_profitability.png) | ![Customer](powerbi/screenshots/03_customer_analysis.png) |
 
-> Screenshots from Power BI Desktop. Full build guide: [powerbi/BUILD_GUIDE.md](powerbi/BUILD_GUIDE.md).
+> Screenshots from Power BI Desktop.
 
----
+
 
 ## Main Insights
 
@@ -106,7 +106,7 @@ See [docs/methodology.md](docs/methodology.md) for the full pipeline description
 
 See [docs/insights.md](docs/insights.md) for full analysis with recommended actions.
 
----
+
 
 ## How to Run the Project
 
@@ -148,7 +148,7 @@ python python/export_for_powerbi.py
 #    See powerbi/dashboard_notes.md for build guide
 ```
 
-**Individual SQL scripts** (if running manually):
+**Individual SQL scripts**:
 
 ```bash
 sqlite3 data/processed/sales_intelligence.db < sql/01_create_schema.sql
@@ -216,17 +216,16 @@ sales-intelligence-dashboard/
 - [x] Replace preview PNGs with actual Power BI screenshots
 - [x] Polish dashboard (KPI cards, YearMonth trend, tables expand, home branding)
 - [x] Publish repository to GitHub
-- [ ] Optional: tighten Pareto to Top 20 customers
-- [ ] Deploy dashboard to Power BI Service (optional)
+- [ ] Deploy dashboard to Power BI Service
 
----
+
 
 ## Author
 
 **Lincoln Sheets** — Data Analyst Portfolio Project
 
----
+
 
 ## License
 
-This project is for portfolio and educational purposes. Dataset licensing depends on the source chosen (see Dataset Source section).
+This project is for portfolio and educational purposes. Dataset licensing depends on the source chosen.
