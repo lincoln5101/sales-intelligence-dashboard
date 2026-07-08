@@ -1,7 +1,5 @@
 # Data Dictionary
 
-> **Status:** Template — populate after dataset selection and schema design.
-
 ## Overview
 
 This project uses a **star schema** with one fact table and multiple dimension tables. The grain of `fact_sales` is **one row per order line item**.
