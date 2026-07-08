@@ -65,7 +65,3 @@ Anyone cloning this repo can:
 2. Run `python python/run_pipeline.py` (raw CSV already in `data/raw/`)
 3. Run `python python/export_for_powerbi.py`
 4. Import exports into Power BI
-
----
-
-*This document will be updated as implementation progresses.*
