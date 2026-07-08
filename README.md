@@ -203,19 +203,6 @@ sales-intelligence-dashboard/
 
 ---
 
-## Future Improvements
-
-- [x] Select and ingest Superstore dataset
-- [x] Build star-schema ETL pipeline
-- [x] Export Power BI-ready CSVs
-- [x] Build Power BI executive dashboard in Desktop (follow `powerbi/BUILD_GUIDE.md`)
-- [x] Replace preview PNGs with actual Power BI screenshots
-- [x] Polish dashboard (KPI cards, YearMonth trend, tables expand, home branding)
-- [x] Publish repository to GitHub
-- [ ] Deploy dashboard to Power BI Service
-
-
-
 ## Author
 
 **Lincoln Sheets** — Data Analyst Portfolio Project
@@ -224,4 +211,4 @@ sales-intelligence-dashboard/
 
 ## License
 
-This project is for portfolio and educational purposes. Dataset licensing depends on the source chosen.
+This project is for portfolio and educational purposes.
