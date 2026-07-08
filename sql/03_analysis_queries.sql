@@ -1,13 +1,9 @@
--- =============================================================================
 -- 04_analysis_queries.sql
 -- Sales Intelligence Dashboard — Business Analysis Queries
--- =============================================================================
--- Run individual queries against: data/processed/sales_intelligence.db
--- =============================================================================
 
--- -----------------------------------------------------------------------------
+-- Run individual queries against: data/processed/sales_intelligence.db
+
 -- KPI: Executive Summary
--- -----------------------------------------------------------------------------
 SELECT
     ROUND(SUM(sales_amount), 2)                                         AS total_revenue,
     ROUND(SUM(profit), 2)                                               AS total_profit,
@@ -17,9 +13,7 @@ SELECT
     ROUND(SUM(sales_amount) / COUNT(DISTINCT order_id), 2)              AS avg_order_value
 FROM fact_sales;
 
--- -----------------------------------------------------------------------------
 -- Revenue & Profit by Year-Month
--- -----------------------------------------------------------------------------
 SELECT
     d.year,
     d.month,
@@ -32,9 +26,7 @@ JOIN dim_date d ON f.order_date_key = d.date_key
 GROUP BY d.year, d.month, d.month_name
 ORDER BY d.year, d.month;
 
--- -----------------------------------------------------------------------------
 -- Top 10 Customers by Revenue
--- -----------------------------------------------------------------------------
 SELECT
     c.customer_name,
     c.segment,
@@ -48,9 +40,7 @@ GROUP BY c.customer_name, c.segment, c.region
 ORDER BY total_revenue DESC
 LIMIT 10;
 
--- -----------------------------------------------------------------------------
 -- Product Category Performance
--- -----------------------------------------------------------------------------
 SELECT
     p.category,
     ROUND(SUM(f.sales_amount), 2) AS revenue,
@@ -62,9 +52,7 @@ JOIN dim_product p ON f.product_key = p.product_key
 GROUP BY p.category
 ORDER BY revenue DESC;
 
--- -----------------------------------------------------------------------------
 -- Sub-Category Performance (lowest margin categories)
--- -----------------------------------------------------------------------------
 SELECT
     p.category,
     p.sub_category,
@@ -77,9 +65,7 @@ GROUP BY p.category, p.sub_category
 ORDER BY margin_pct ASC
 LIMIT 10;
 
--- -----------------------------------------------------------------------------
 -- Regional Performance by Year
--- -----------------------------------------------------------------------------
 SELECT
     c.region,
     d.year,
@@ -91,9 +77,7 @@ JOIN dim_date d ON f.order_date_key = d.date_key
 GROUP BY c.region, d.year
 ORDER BY c.region, d.year;
 
--- -----------------------------------------------------------------------------
 -- Discount Impact on Profitability
--- -----------------------------------------------------------------------------
 SELECT
     CASE
         WHEN f.discount = 0 THEN 'No Discount'
@@ -110,9 +94,7 @@ FROM fact_sales f
 GROUP BY discount_band
 ORDER BY avg_discount_pct;
 
--- -----------------------------------------------------------------------------
 -- Ship Mode Analysis
--- -----------------------------------------------------------------------------
 SELECT
     f.ship_mode,
     COUNT(DISTINCT f.order_id) AS orders,
