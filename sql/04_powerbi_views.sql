@@ -1,11 +1,7 @@
--- =============================================================================
 -- 05_powerbi_views.sql
 -- Sales Intelligence Dashboard — Power BI Export Views
--- =============================================================================
 
--- -----------------------------------------------------------------------------
 -- vw_sales_executive: Primary denormalized table for Power BI
--- -----------------------------------------------------------------------------
 CREATE VIEW vw_sales_executive AS
 SELECT
     f.sales_key,
@@ -49,9 +45,7 @@ JOIN dim_date d_ship ON f.ship_date_key  = d_ship.date_key
 JOIN dim_customer c  ON f.customer_key   = c.customer_key
 JOIN dim_product p   ON f.product_key    = p.product_key;
 
--- -----------------------------------------------------------------------------
 -- vw_monthly_kpis: Pre-aggregated monthly metrics
--- -----------------------------------------------------------------------------
 CREATE VIEW vw_monthly_kpis AS
 SELECT
     d.year,
@@ -67,9 +61,7 @@ FROM fact_sales f
 JOIN dim_date d ON f.order_date_key = d.date_key
 GROUP BY d.year, d.month, d.month_name;
 
--- -----------------------------------------------------------------------------
 -- vw_category_summary: Category rollup
--- -----------------------------------------------------------------------------
 CREATE VIEW vw_category_summary AS
 SELECT
     p.category,
@@ -82,9 +74,7 @@ FROM fact_sales f
 JOIN dim_product p ON f.product_key = p.product_key
 GROUP BY p.category;
 
--- -----------------------------------------------------------------------------
 -- vw_regional_summary: Region rollup for map/bar charts
--- -----------------------------------------------------------------------------
 CREATE VIEW vw_regional_summary AS
 SELECT
     c.region,
