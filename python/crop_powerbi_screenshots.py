@@ -2,8 +2,10 @@
 crop_powerbi_screenshots.py
 Crop full Power BI Desktop window captures to the report page canvas.
 
-Includes the light-gray workspace padding so chart axis labels and titles
-are not clipped. Excludes ribbon, page tabs, and right-side panes.
+Prefer exporting pre-cropped screenshots from Power BI (View → Fit to page,
+then capture the canvas) and copying them directly into powerbi/screenshots/.
+Only use this script when you have full-window captures that still include
+the ribbon, tabs, or side panes.
 
 Usage:
     python python/crop_powerbi_screenshots.py path/to/screenshot.png
