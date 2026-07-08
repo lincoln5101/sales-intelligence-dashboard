@@ -4,9 +4,8 @@ Sales Intelligence Dashboard — End-to-End ETL Pipeline
 
 Runs the full data pipeline:
   1. Create schema (01)
-  2. Load raw CSV into staging (02 via Python)
-  3. Transform to star schema (03)
-  4. Create Power BI views (05)
+  2. Transform to star schema (02)
+  3. Create Power BI views (04)
 
 Usage:
     python python/run_pipeline.py
