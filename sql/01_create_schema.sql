@@ -1,7 +1,7 @@
 -- 01_create_schema.sql
 -- Sales Intelligence Dashboard — Database Schema (SQLite)
 
--- Company: Apex Distribution Inc. (fictional framing of Superstore sample data)
+-- Company: Apex Distribution Inc.
 -- Run: sqlite3 data/processed/sales_intelligence.db < sql/01_create_schema.sql
 
 PRAGMA foreign_keys = ON;
