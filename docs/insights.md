@@ -19,7 +19,7 @@ Furniture creates the illusion of strong sales volume while eroding overall comp
 **Recommended Action:**  
 Audit Tables and Bookcases pricing and supplier costs. Consider raising prices, renegotiating COGS, or reducing discount authorization for Furniture SKUs. Shift sales incentives toward Technology and Office Supplies.
 
-**Supporting Query:** `sql/04_analysis_queries.sql` — Product Category Performance
+**Supporting Query:** `sql/04_analysis_queries.sql`: Product Category Performance
 
 ---
 
@@ -36,7 +36,7 @@ Audit Tables and Bookcases pricing and supplier costs. Consider raising prices, 
 1,393 line items (14%) carry discounts above 20%, and as a group they are deeply unprofitable.
 
 **Business Impact:**  
-Sales reps may be using steep discounts to close deals — especially on Furniture; without visibility into margin impact. This directly explains why 18.7% of all line items have negative profit.
+Sales reps may be using steep discounts to close deals; especially on Furniture; without visibility into margin impact. This directly explains why 18.7% of all line items have negative profit.
 
 **Recommended Action:**  
 Implement discount approval thresholds above 15%. Build a margin-at-quote calculator for the sales team. Review the 1,393 heavily discounted transactions for patterns (category, region, rep).
