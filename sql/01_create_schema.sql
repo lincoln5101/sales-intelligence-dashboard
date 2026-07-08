@@ -1,14 +1,12 @@
--- =============================================================================
 -- 01_create_schema.sql
 -- Sales Intelligence Dashboard — Database Schema (SQLite)
--- =============================================================================
+
 -- Company: Apex Distribution Inc. (fictional framing of Superstore sample data)
 -- Run: sqlite3 data/processed/sales_intelligence.db < sql/01_create_schema.sql
--- =============================================================================
 
 PRAGMA foreign_keys = ON;
 
--- Drop existing objects (idempotent rebuild)
+-- Drop existing objects
 DROP VIEW IF EXISTS vw_category_summary;
 DROP VIEW IF EXISTS vw_monthly_kpis;
 DROP VIEW IF EXISTS vw_sales_executive;
@@ -18,13 +16,11 @@ DROP TABLE IF EXISTS dim_customer;
 DROP TABLE IF EXISTS dim_date;
 DROP TABLE IF EXISTS stg_sales_raw;
 
--- -----------------------------------------------------------------------------
--- STAGING TABLE (mirrors raw CSV structure)
--- -----------------------------------------------------------------------------
+-- STAGING TABLE
 CREATE TABLE stg_sales_raw (
     row_id          INTEGER PRIMARY KEY,
     order_id        TEXT NOT NULL,
-    order_date      TEXT NOT NULL,          -- ISO format: YYYY-MM-DD
+    order_date      TEXT NOT NULL,
     ship_date       TEXT NOT NULL,
     ship_mode       TEXT NOT NULL,
     customer_id     TEXT NOT NULL,
@@ -45,9 +41,7 @@ CREATE TABLE stg_sales_raw (
     profit          REAL NOT NULL
 );
 
--- -----------------------------------------------------------------------------
 -- DIMENSION: Calendar
--- -----------------------------------------------------------------------------
 CREATE TABLE dim_date (
     date_key        INTEGER PRIMARY KEY,      -- YYYYMMDD
     full_date       TEXT NOT NULL UNIQUE,     -- YYYY-MM-DD
@@ -60,9 +54,7 @@ CREATE TABLE dim_date (
     is_weekend      INTEGER NOT NULL          -- 0=weekday, 1=weekend
 );
 
--- -----------------------------------------------------------------------------
 -- DIMENSION: Customer
--- -----------------------------------------------------------------------------
 CREATE TABLE dim_customer (
     customer_key    INTEGER PRIMARY KEY,
     customer_id     TEXT NOT NULL,
@@ -75,9 +67,7 @@ CREATE TABLE dim_customer (
     UNIQUE (customer_id, city, state, region)
 );
 
--- -----------------------------------------------------------------------------
 -- DIMENSION: Product
--- -----------------------------------------------------------------------------
 CREATE TABLE dim_product (
     product_key     INTEGER PRIMARY KEY,
     product_id      TEXT NOT NULL,
@@ -87,9 +77,7 @@ CREATE TABLE dim_product (
     UNIQUE (product_id, product_name, category, sub_category)
 );
 
--- -----------------------------------------------------------------------------
--- FACT: Sales (grain = one order line item)
--- -----------------------------------------------------------------------------
+-- FACT: Sales
 CREATE TABLE fact_sales (
     sales_key       INTEGER PRIMARY KEY,
     row_id          INTEGER NOT NULL UNIQUE,
@@ -110,9 +98,7 @@ CREATE TABLE fact_sales (
     FOREIGN KEY (product_key)    REFERENCES dim_product(product_key)
 );
 
--- -----------------------------------------------------------------------------
 -- INDEXES
--- -----------------------------------------------------------------------------
 CREATE INDEX idx_fact_sales_order_date  ON fact_sales(order_date_key);
 CREATE INDEX idx_fact_sales_customer    ON fact_sales(customer_key);
 CREATE INDEX idx_fact_sales_product     ON fact_sales(product_key);
