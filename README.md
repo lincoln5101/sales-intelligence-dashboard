@@ -120,7 +120,7 @@ See [docs/insights.md](docs/insights.md) for full analysis with recommended acti
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/sales-intelligence-dashboard.git
+git clone https://github.com/lincoln5101/sales-intelligence-dashboard.git
 cd sales-intelligence-dashboard
 
 # Create virtual environment
@@ -179,10 +179,9 @@ sales-intelligence-dashboard/
 │
 ├── sql/
 │   ├── 01_create_schema.sql           # Star schema DDL
-│   ├── 02_load_data.sql               # Staging table load
-│   ├── 03_clean_transform.sql         # ETL: staging → star schema
-│   ├── 04_analysis_queries.sql        # Business analysis queries
-│   └── 05_powerbi_views.sql           # Denormalized views for BI
+│   ├── 02_clean_transform.sql         # ETL: staging → star schema
+│   ├── 03_analysis_queries.sql        # Business analysis queries
+│   └── 04_powerbi_views.sql           # Denormalized views for BI
 │
 ├── python/
 │   ├── data_validation.py             # Raw data quality checks
@@ -199,10 +198,6 @@ sales-intelligence-dashboard/
 │   ├── data_dictionary.md             # Table/column definitions
 │   ├── methodology.md                 # Pipeline documentation
 │   ├── insights.md                    # Key findings
-│   └── dashboard_design.md            # Dashboard wireframe + DAX
-│
-└── assets/
-    └── architecture_diagram.png       # Pipeline diagram (optional)
 ```
 
 ---
