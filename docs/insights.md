@@ -11,7 +11,7 @@ Apex Distribution generated **$2.30M in revenue** and **$286K in profit** (12.5%
 ## Insight 1: Furniture Is a Revenue Trap
 
 **Finding:**  
-Furniture generates $742K in revenue (32% of total) but only $18K in profit — a **2.5% margin** vs. 17.4% for Technology. Sub-categories **Tables** (-8.6% margin, -$17.7K profit) and **Bookcases** (-3.0% margin) are actively losing money.
+Furniture generates $742K in revenue (32% of total) but only $18K in profit; a **2.5% margin** vs. 17.4% for Technology. Sub-categories **Tables** (-8.6% margin, -$17.7K profit) and **Bookcases** (-3.0% margin) are actively losing money.
 
 **Business Impact:**  
 Furniture creates the illusion of strong sales volume while eroding overall company profitability. Without intervention, revenue growth in this category could actually reduce total profit.
@@ -36,12 +36,12 @@ Audit Tables and Bookcases pricing and supplier costs. Consider raising prices, 
 1,393 line items (14%) carry discounts above 20%, and as a group they are deeply unprofitable.
 
 **Business Impact:**  
-Sales reps may be using steep discounts to close deals — especially on Furniture — without visibility into margin impact. This directly explains why 18.7% of all line items have negative profit.
+Sales reps may be using steep discounts to close deals — especially on Furniture; without visibility into margin impact. This directly explains why 18.7% of all line items have negative profit.
 
 **Recommended Action:**  
 Implement discount approval thresholds above 15%. Build a margin-at-quote calculator for the sales team. Review the 1,393 heavily discounted transactions for patterns (category, region, rep).
 
-**Supporting Query:** `sql/04_analysis_queries.sql` — Discount Impact on Profitability
+**Supporting Query:** `sql/04_analysis_queries.sql`: Discount Impact on Profitability
 
 ---
 
@@ -55,7 +55,7 @@ Implement discount approval thresholds above 15%. Build a margin-at-quote calcul
 | South   | $392K   | 11.9%  |
 | Central | $501K   | **7.9%** |
 
-Central has the second-highest revenue but the lowest margin by a wide margin — nearly half the West's profitability rate.
+Central has the second-highest revenue but the lowest margin by a wide margin; nearly half the West's profitability rate.
 
 **Business Impact:**  
 Resource allocation and sales strategy in Central may be optimized for volume over profit. This region likely drives the Furniture discount problem.
@@ -63,7 +63,7 @@ Resource allocation and sales strategy in Central may be optimized for volume ov
 **Recommended Action:**  
 Conduct a regional profitability review. Compare product mix and discount rates in Central vs. West. Consider regional pricing or category mix targets.
 
-**Supporting Query:** `sql/04_analysis_queries.sql` — Regional Performance by Year
+**Supporting Query:** `sql/04_analysis_queries.sql`: Regional Performance by Year
 
 ---
 
