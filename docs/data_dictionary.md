@@ -79,7 +79,3 @@ This project uses a **star schema** with one fact table and multiple dimension t
 | Profit Margin % | profit / sales_amount × 100 |
 | Average Order Value | SUM(sales_amount) / COUNT(DISTINCT order_id) |
 | Discount Amount | sales_amount × discount / (1 − discount) |
-
----
-
-*Update column names and types to match the chosen dataset.*
