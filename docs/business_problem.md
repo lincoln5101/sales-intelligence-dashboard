@@ -29,7 +29,6 @@ A successful analytics solution will:
 1. Consolidate raw sales data into a clean, queryable relational database
 2. Answer executive questions via SQL and a Power BI dashboard
 3. Surface at least 3 actionable business insights
-4. Be reproducible — anyone can clone the repo and rebuild the pipeline
 
 ## Key Business Questions
 
