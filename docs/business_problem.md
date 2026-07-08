@@ -39,7 +39,3 @@ A successful analytics solution will:
 4. How do discounts affect profitability?
 5. Who are the top customers by revenue and profit?
 6. What are monthly and quarterly sales trends?
-
----
-
-*This document will be refined once the dataset is selected and initial EDA is complete.*
