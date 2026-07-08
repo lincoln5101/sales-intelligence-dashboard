@@ -1,19 +1,14 @@
--- =============================================================================
 -- 03_clean_transform.sql
 -- Sales Intelligence Dashboard — ETL: Staging → Star Schema
--- =============================================================================
--- Prerequisites: 01_create_schema.sql + staging data loaded
--- =============================================================================
 
--- -----------------------------------------------------------------------------
--- DATA QUALITY CHECKS (informational)
--- -----------------------------------------------------------------------------
+-- Prerequisites: 01_create_schema.sql + staging data loaded
+
+-- DATA QUALITY CHECKS
+
 -- SELECT 'rows_in_staging' AS metric, COUNT(*) AS value FROM stg_sales_raw;
 -- SELECT 'negative_profit_rows' AS metric, COUNT(*) AS value FROM stg_sales_raw WHERE profit < 0;
 
--- -----------------------------------------------------------------------------
--- POPULATE dim_date (all calendar days in the data range)
--- -----------------------------------------------------------------------------
+-- POPULATE dim_date
 INSERT INTO dim_date (date_key, full_date, year, quarter, month, month_name, day_of_week, day_name, is_weekend)
 WITH RECURSIVE
 bounds AS (
@@ -46,11 +41,7 @@ SELECT
     CASE WHEN CAST(strftime('%w', d) AS INTEGER) IN (0, 6) THEN 1 ELSE 0 END
 FROM dates;
 
--- -----------------------------------------------------------------------------
 -- POPULATE dim_customer
--- Grain: one row per customer + ship-to location (same customer_id may
--- appear in multiple regions — a known characteristic of the source data)
--- -----------------------------------------------------------------------------
 INSERT INTO dim_customer (customer_key, customer_id, customer_name, segment, city, state, region, country)
 SELECT
     ROW_NUMBER() OVER (ORDER BY customer_id, city, state, region),
@@ -66,11 +57,7 @@ FROM (
     FROM stg_sales_raw
 );
 
--- -----------------------------------------------------------------------------
 -- POPULATE dim_product
--- Grain: one row per unique product combination (32 product_ids have
--- minor name variations in source data — preserved for accurate joins)
--- -----------------------------------------------------------------------------
 INSERT INTO dim_product (product_key, product_id, product_name, category, sub_category)
 SELECT
     ROW_NUMBER() OVER (ORDER BY product_id, product_name),
@@ -83,9 +70,7 @@ FROM (
     FROM stg_sales_raw
 );
 
--- -----------------------------------------------------------------------------
 -- POPULATE fact_sales
--- -----------------------------------------------------------------------------
 INSERT INTO fact_sales (
     sales_key, row_id, order_id, order_date_key, ship_date_key,
     customer_key, product_key, quantity, unit_price, discount,
