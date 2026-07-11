@@ -6,7 +6,7 @@ Jan 2014 - Dec 2017 | 9,994 line items | $2.30M revenue
 
 Apex Distribution did $2.30M in revenue and $286K in profit (12.5% margin) over four years. Revenue climbed from $484K in 2014 to $733K in 2017, but margins vary a lot by category. Technology and Office Supplies run above 17% margin. Furniture is the second-biggest category by revenue but only 2.5% margin. Discounts over 20% are deeply unprofitable (-37% margin as a group). Central region has the worst margin at 7.9%.
 
-If leadership acted on the three recommendations below, estimated annual profit upside is roughly $55K to $90K (about 19% to 31% above the current $286K base), depending on how aggressively discount caps are enforced.
+If leadership acted on the three recommendations below, estimated profit upside is roughly $55K to $90K (about 19% to 31% above the current $286K base), depending on how aggressively discount caps are enforced.
 
 ## 1. Furniture looks good on revenue, not on profit
 
