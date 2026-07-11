@@ -63,11 +63,11 @@ Details in [docs/methodology.md](docs/methodology.md).
 
 Main takeaways:
 
-1. Furniture is 32% of revenue but only 2.5% margin. Tables alone loses $17.7K.
-2. Discounts over 20% run at about -37% margin.
-3. Central region does $501K in revenue but only 7.9% margin.
+1. Furniture is 32% of revenue but only 2.5% margin. Tables alone loses $17.7K; capping Tables discounts at 20% could swing that sub-category by ~$31K.
+2. Discounts over 20% run at -37% margin and cost the business $135K on $363K in sales. Central accounts for $52K of that loss.
+3. Central region does $501K in revenue at 7.9% margin vs. 14.9% in the West. Tightening Central discount policy alone could recover most of the gap.
 
-Full write-up in [docs/insights.md](docs/insights.md).
+Estimated upside from the top three actions: **$55K to $90K** in additional profit (19% to 31% above current). Full write-up in [docs/insights.md](docs/insights.md).
 
 ## How to run it
 
