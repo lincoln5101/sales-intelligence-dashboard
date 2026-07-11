@@ -8,15 +8,15 @@ Raw CSV -> Staging -> Clean & transform -> Star schema -> SQL views -> Power BI
 
 ## Steps
 
-**1. Load data**
+1. Load data
 
 Superstore CSV loaded with Python/pandas into `stg_sales_raw`.
 
-**2. Validate**
+2. Validate
 
 `python/data_validation.py` checks nulls, duplicates, and basic business rules. Result: 9,994 rows, no nulls, no duplicate keys, 1,871 negative-profit rows flagged.
 
-**3. Model**
+3. Model
 
 Star schema:
 
@@ -29,15 +29,15 @@ Star schema:
 
 Customer grain is customer + ship-to location because 780 of 793 customer IDs show up in more than one region.
 
-**4. Transform**
+4. Transform
 
 SQL (`02_clean_transform.sql`): build date/customer/product dimensions, load fact table, calculate unit price.
 
-**5. Analyze**
+5. Analyze
 
 SQL (`03_analysis_queries.sql`): KPIs, trends, category/region/discount analysis.
 
-**6. Power BI**
+6. Power BI
 
 Export views to CSV with `export_for_powerbi.py`, build dashboard in Power BI Desktop.
 
