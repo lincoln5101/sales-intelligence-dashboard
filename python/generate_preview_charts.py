@@ -1,13 +1,5 @@
-"""
-generate_preview_charts.py
-Generate static dashboard preview images from Power BI export data.
-
-These are portfolio placeholders — replace with actual Power BI screenshots
-after building the dashboard (see powerbi/BUILD_GUIDE.md).
-
-Usage:
-    python python/generate_preview_charts.py
-"""
+# Generate chart previews from export data (optional, if you need placeholder images).
+# Usage: python python/generate_preview_charts.py
 
 from pathlib import Path
 

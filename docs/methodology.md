@@ -1,67 +1,61 @@
 # Methodology
 
-## End-to-End Pipeline
+## Pipeline
 
 ```
-Raw CSV/Excel  →  Staging Tables  →  Clean & Transform  →  Star Schema  →  SQL Views  →  Power BI
-     │                  │                    │                  │              │
-  data/raw/         SQL load           03_clean_         dim_* +        05_powerbi_     Dashboard
-                    (02_load)          transform.sql      fact_sales      views.sql
+Raw CSV -> Staging -> Clean & transform -> Star schema -> SQL views -> Power BI
 ```
 
-## Phase 1: Data Ingestion
+## Steps
 
-- Source: Public dataset (see README for attribution)
-- Tool: Python (`pandas`) for CSV/Excel loading; SQL for staging table inserts
-- Output: `stg_sales_raw` staging table mirroring source file structure
+**1. Load data**
 
-## Phase 2: Data Validation
+Superstore CSV loaded with Python/pandas into `stg_sales_raw`.
 
-- Tool: `python/data_validation.py`
-- Result: 9,994 rows, 0 nulls, 0 duplicate keys, 1,871 negative-profit rows flagged
+**2. Validate**
 
-## Phase 3: Data Modeling
+`python/data_validation.py` checks nulls, duplicates, and basic business rules. Result: 9,994 rows, no nulls, no duplicate keys, 1,871 negative-profit rows flagged.
 
-- Approach: Star schema (dimensional modeling)
-- Tables: `dim_date` (1,464 days), `dim_customer` (4,688 locations), `dim_product` (1,894 SKUs), `fact_sales` (9,994 line items)
-- Key decision: Customer dimension grain = customer + ship-to location, because 780 of 793 customer IDs appear in multiple regions
+**3. Model**
 
-## Phase 4: ETL / Transformation
+Star schema:
 
-- Tool: SQL (`03_clean_transform.sql`)
-- Steps:
-  1. Generate calendar dimension from date range in source data
-  2. Deduplicate customers and products into dimension tables
-  3. Join staging data to dimensions; load fact table
-  4. Calculate derived fields (unit price, margin)
+| Table | Rows |
+|-------|------|
+| dim_date | 1,464 |
+| dim_customer | 4,688 |
+| dim_product | 1,894 |
+| fact_sales | 9,994 |
 
-## Phase 5: Analysis
+Customer grain is customer + ship-to location because 780 of 793 customer IDs show up in more than one region.
 
-- Tool: SQL (`04_analysis_queries.sql`)
-- Focus: KPIs, trends, segment analysis, discount impact
-- Output: Query results inform dashboard design and insights doc
+**4. Transform**
 
-## Phase 6: Power BI Delivery
+SQL (`02_clean_transform.sql`): build date/customer/product dimensions, load fact table, calculate unit price.
 
-- Tool: Power BI Desktop
-- Data source: CSV exports from `data/exports/` or direct SQLite connection
-- Views: `vw_sales_executive`, `vw_monthly_kpis`, `vw_category_summary`
+**5. Analyze**
 
-## Technology Choices
+SQL (`03_analysis_queries.sql`): KPIs, trends, category/region/discount analysis.
 
-| Decision | Choice | Rationale |
-|----------|--------|-----------|
-| Database | SQLite (default) | Zero setup, portable, portfolio-friendly |
-| Alt database | SQL Server Express | Use if targeting enterprise SQL Server roles |
-| ETL | SQL-first | Demonstrates core analyst SQL skills |
-| Validation | Python | pandas is industry standard for data inspection |
-| Visualization | Power BI | Widely used in corporate BI environments |
+**6. Power BI**
 
-## Reproducibility
+Export views to CSV with `export_for_powerbi.py`, build dashboard in Power BI Desktop.
 
-Anyone cloning this repo can:
+## Tech choices
 
-1. `pip install -r requirements.txt`
-2. Run `python python/run_pipeline.py` (raw CSV already in `data/raw/`)
-3. Run `python python/export_for_powerbi.py`
-4. Import exports into Power BI
+| | Choice | Why |
+|---|--------|-----|
+| Database | SQLite | Easy to set up, portable |
+| ETL | SQL | Keeps the SQL work visible |
+| Validation | Python/pandas | Quick to inspect raw data |
+| Viz | Power BI | Common in BI roles |
+
+## Reproduce it
+
+```bash
+pip install -r requirements.txt
+python python/run_pipeline.py
+python python/export_for_powerbi.py
+```
+
+Raw CSV is already in `data/raw/`. Import the exports into Power BI or open the `.pbix` file.

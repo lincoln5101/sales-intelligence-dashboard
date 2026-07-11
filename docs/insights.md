@@ -1,75 +1,60 @@
-# Key Insights
+# Insights
 
-> Analysis period: January 2014 – December 2017 | 9,994 order line items | $2.30M revenue
+Jan 2014 - Dec 2017 | 9,994 line items | $2.30M revenue
 
-## Executive Summary
+## Summary
 
-Apex Distribution generated **$2.30M in revenue** and **$286K in profit** (12.5% margin) across four years of sales. Revenue grew steadily from $484K (2014) to $733K (2017), but profitability is uneven: **Technology** and **Office Supplies** drive margins above 17%, while **Furniture** contributes only 2.5% margin despite being the second-largest category by revenue. Heavy discounting above 20% destroys profitability, producing a **-37% margin** on those transactions. Central region underperforms all others at 7.9% margin.
+Apex Distribution did $2.30M in revenue and $286K in profit (12.5% margin) over four years. Revenue climbed from $484K in 2014 to $733K in 2017, but margins vary a lot by category. Technology and Office Supplies run above 17% margin. Furniture is the second-biggest category by revenue but only 2.5% margin. Discounts over 20% are deeply unprofitable (-37% margin as a group). Central region has the worst margin at 7.9%.
 
----
+## 1. Furniture looks good on revenue, not on profit
 
-## Insight 1: Furniture Is a Revenue Trap
+Furniture brought in $742K (32% of revenue) but only $18K in profit, a 2.5% margin vs. 17.4% for Technology.
 
-**Finding:**  
-Furniture generates $742K in revenue (32% of total) but only $18K in profit; a **2.5% margin** vs. 17.4% for Technology. Sub-categories **Tables** (-8.6% margin, -$17.7K profit) and **Bookcases** (-3.0% margin) are actively losing money.
+The pain is in specific sub-categories:
 
-**Business Impact:**  
-Furniture creates the illusion of strong sales volume while eroding overall company profitability. Without intervention, revenue growth in this category could actually reduce total profit.
+| Sub-category | Profit | Margin |
+|--------------|--------|--------|
+| Tables | -$17,725 | -8.6% |
+| Bookcases | -$3,473 | -3.0% |
+| Chairs | +$26,590 | 8.1% |
 
-**Recommended Action:**  
-Audit Tables and Bookcases pricing and supplier costs. Consider raising prices, renegotiating COGS, or reducing discount authorization for Furniture SKUs. Shift sales incentives toward Technology and Office Supplies.
+Furniture inflates top-line numbers without helping the bottom line. If that category keeps growing, total profit could actually drop.
 
-**Supporting Query:** `sql/04_analysis_queries.sql`: Product Category Performance
+Worth looking at: pricing and costs on Tables and Bookcases, tighter discount rules on Furniture, and shifting incentives toward Technology and Office Supplies.
 
----
+Query: `sql/03_analysis_queries.sql`, Product Category Performance
 
-## Insight 2: Heavy Discounting Destroys Profit
+## 2. Heavy discounting kills margin
 
-**Finding:**  
-| Discount Band | Line Items | Margin |
-|---------------|-----------|--------|
-| No Discount   | 4,798     | **29.5%** |
-| 1–10%         | 94        | 16.6% |
-| 11–20%        | 3,709     | 11.6% |
-| 21%+          | 1,393     | **-37.3%** |
+| Discount | Line items | Margin |
+|----------|-----------|--------|
+| None | 4,798 | 29.5% |
+| 1-10% | 94 | 16.6% |
+| 11-20% | 3,709 | 11.6% |
+| 21%+ | 1,393 | -37.3% |
 
-1,393 line items (14%) carry discounts above 20%, and as a group they are deeply unprofitable.
+About 14% of line items have discounts above 20%, and those orders lose money overall. That helps explain why 18.7% of all line items have negative profit.
 
-**Business Impact:**  
-Sales reps may be using steep discounts to close deals; especially on Furniture; without visibility into margin impact. This directly explains why 18.7% of all line items have negative profit.
+Worth looking at: approval thresholds above 15%, and a review of which categories and regions get the steepest discounts.
 
-**Recommended Action:**  
-Implement discount approval thresholds above 15%. Build a margin-at-quote calculator for the sales team. Review the 1,393 heavily discounted transactions for patterns (category, region, rep).
+Query: `sql/03_analysis_queries.sql`, Discount Impact
 
-**Supporting Query:** `sql/04_analysis_queries.sql`: Discount Impact on Profitability
+## 3. Central region underperforms on margin
 
----
+| Region | Revenue | Margin |
+|--------|---------|--------|
+| West | $725K | 14.9% |
+| East | $679K | 13.5% |
+| South | $392K | 11.9% |
+| Central | $501K | 7.9% |
 
-## Insight 3: Central Region Underperforms
+Central is second in revenue but last in margin, about half the West's rate. Likely tied to Furniture volume and heavy discounting in that region.
 
-**Finding:**  
-| Region  | Revenue | Margin |
-|---------|---------|--------|
-| West    | $725K   | 14.9%  |
-| East    | $679K   | 13.5%  |
-| South   | $392K   | 11.9%  |
-| Central | $501K   | **7.9%** |
+Query: `sql/03_analysis_queries.sql`, Regional Performance
 
-Central has the second-highest revenue but the lowest margin by a wide margin; nearly half the West's profitability rate.
+## Other notes
 
-**Business Impact:**  
-Resource allocation and sales strategy in Central may be optimized for volume over profit. This region likely drives the Furniture discount problem.
-
-**Recommended Action:**  
-Conduct a regional profitability review. Compare product mix and discount rates in Central vs. West. Consider regional pricing or category mix targets.
-
-**Supporting Query:** `sql/04_analysis_queries.sql`: Regional Performance by Year
-
----
-
-## Additional Observations
-
-- **Revenue is growing consistently** — 2014 ($484K) → 2017 ($733K), a 51% increase over four years. Profit grew even faster ($50K → $93K).
-- **Consumer segment** is the largest by revenue; Corporate and Home Office segments have comparable margins.
-- **Data modeling note:** 793 unique customer IDs expand to 4,688 customer-location combinations because customers ship to multiple regions. This was handled in the ETL by modeling geography at the ship-to level (see `docs/data_dictionary.md`).
-- **1,871 line items (18.7%)** have negative profit — concentrated in Furniture and heavily discounted orders.
+- Revenue grew 51% from 2014 to 2017. Profit grew faster ($50K to $93K).
+- Consumer is the biggest segment by revenue. Home Office has the best margin.
+- 793 customer IDs become 4,688 rows in the customer table because the same customer can ship to multiple locations. I modeled that at the ship-to level (see `data_dictionary.md`).
+- 1,871 line items (18.7%) have negative profit, mostly Furniture and heavily discounted orders.

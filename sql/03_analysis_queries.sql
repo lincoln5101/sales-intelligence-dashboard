@@ -1,9 +1,7 @@
--- 04_analysis_queries.sql
--- Sales Intelligence Dashboard — Business Analysis Queries
+-- 03_analysis_queries.sql
+-- Analysis queries for the sales dashboard
 
--- Run individual queries against: data/processed/sales_intelligence.db
-
--- KPI: Executive Summary
+-- Executive summary KPIs
 SELECT
     ROUND(SUM(sales_amount), 2)                                         AS total_revenue,
     ROUND(SUM(profit), 2)                                               AS total_profit,
